@@ -15,22 +15,22 @@ function Subtotal() {
         renderText={(value) => (
           <>
             <p>
-              {/* Part of the homework */}
+              {/*Parte de la tarea */}
               Subtotal ({basket.length} items): <strong>{value}</strong>
             </p>
             <small className="subtotal__gift">
-              <input type="checkbox" /> This order contains a gift
+              <input type="checkbox" /> Esta orden contiene un regalo
             </small>
           </>
         )}
         decimalScale={2}
-        value={getBasketTotal(basket)} // Part of the homework
+        value={getBasketTotal(basket)} // Parte de la tarea
         displayType={"text"}
         thousandSeparator={true}
         prefix={"$"}
       />
 
-      <button onClick={e => history.push('/payment')}>Proceed to Checkout</button>
+      <button onClick={e => history.push('/payment')}>Procesado para el Checkout</button>
     </div>
   );
 }

@@ -3,8 +3,8 @@ import "./App.css";
 import Header from "./Header";
 import Home from "./Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Checkout from './Checkout';
-import Login from "./Login";
+import Checkout from "./Checkout";
+import Login from "./LoginAuth0";
 import Payment from "./Payment";
 import Orders from "./Orders";
 import { auth } from "./firebase";
@@ -15,6 +15,12 @@ import { Elements } from "@stripe/react-stripe-js";
 const promise = loadStripe(
   "pk_test_51HPvU9DFg5koCdLGJJbNo60QAU99BejacsvnKvT8xnCu1wFLCuQP3WBArscK3RvSQmSIB3N0Pbsc7TtbQiJ1vaOi00X9sIbazL"
 );
+
+import { useAuth0 } from "@auth0/auth0-react";
+
+import { LoginButton } from "./LoginAuth0";
+import { LogoutButton } from "./LogoutAuth0";
+import { Profile } from "./Profile";
 
 function App() {
 
@@ -45,7 +51,15 @@ function App() {
     });
   }, []);
 
+
+  const { isAuthenticated } = useAuth0();
+
   return (
+/*Revisar esto*/
+  
+
+
+
     <Router>
       <div className="app">
         <Switch>
@@ -55,6 +69,16 @@ function App() {
           </Route>
           <Route path="/login">
             <Login />
+{/*Esto va aca? */}
+            {isAuthenticated ? (
+      <>
+        <Profile />
+        <LogoutButton />
+      </>
+    ) : (
+      <LoginButton />
+    )}
+
           </Route>
           <Route path="/checkout">
             <Header />
